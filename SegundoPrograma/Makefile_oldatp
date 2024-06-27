@@ -1,0 +1,123 @@
+top_srcdir = .
+srcdir = .
+
+top_builddir = .
+PREFIX = /usr/local
+prefix = $(PREFIX)
+exec_prefix = ${prefix}
+bindir = ${exec_prefix}/bin
+libdir = ${exec_prefix}/lib
+includedir = ${prefix}/include
+CC = gcc
+CXX = g++
+CFLAGS = -g -O2 -DPA_LITTLE_ENDIAN -I$(top_srcdir)/include -I$(top_srcdir)/src/common -I$(top_srcdir)/src/os/win -DPA_USE_WMME=0 -DPA_USE_ASIO=0 -DPA_USE_WDMKS=0 -DPA_USE_DS=0 -DPA_USE_WASAPI=0 -ffast-math -fomit-frame-pointer -I$(top_srcdir)/src/hostapi/asio -I./asiosdk_2.3.3/host/pc -I./asiosdk_2.3.3/common -I./asiosdk_2.3.3/host -UPA_USE_ASIO -DPA_USE_ASIO=1 -DWINDOWS -D_WIN32_WINNT=0x0501 -DWINVER=0x0501 -mthreads -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DSIZEOF_SHORT=2 -DSIZEOF_INT=4 -DSIZEOF_LONG=4 -DHAVE_CLOCK_GETTIME=1 -DHAVE_NANOSLEEP=1
+LIBS =  -lwinmm -lm -lole32 -luuid
+AR = /mingw/bin/ar
+RANLIB = ranlib
+SHELL = /bin/sh
+LIBTOOL = $(SHELL) $(top_builddir)/libtool
+INSTALL = /usr/bin/install -c
+INSTALL_DATA = ${INSTALL} -m 644
+SHARED_FLAGS = -shared
+LDFLAGS = 
+DLL_LIBS =  -lwinmm -lm -lole32 -luuid
+CXXFLAGS = -g -O2 -DPA_LITTLE_ENDIAN -I$(top_srcdir)/include -I$(top_srcdir)/src/common -I$(top_srcdir)/src/os/win -DPA_USE_WMME=0 -DPA_USE_ASIO=0 -DPA_USE_WDMKS=0 -DPA_USE_DS=0 -DPA_USE_WASAPI=0 -ffast-math -fomit-frame-pointer -I$(top_srcdir)/src/hostapi/asio -I./asiosdk_2.3.3/host/pc -I./asiosdk_2.3.3/common -I./asiosdk_2.3.3/host -UPA_USE_ASIO -DPA_USE_ASIO=1 -DWINDOWS -D_WIN32_WINNT=0x0501 -DWINVER=0x0501
+NASM = 
+NASMOPT = 
+LN_S = cp -pR
+LT_CURRENT=2
+LT_REVISION=0
+LT_AGE=0
+
+PALIB = libportaudio.la
+PAINC = include/portaudio.h
+
+#------------------- Definição de compiladores --------------------#
+
+CC = gcc.exe
+FOR = C:\ATP\atpmingw\make\MinGW\bin\g77.exe
+
+#--------------------------- Diretórios ---------------------------#
+
+# MYDOCS contém os arquivos a serem adicionados e a subrotina 
+# "fgnmod.f" alterada para acessar as novas funções
+MYDOCS = C:/Users/Aldair/Documents/ATPdata/mytpbig
+
+# ATPMINGW contém as bibliotecas e arquivos do ATP
+ATPMINGW = C:/ATP/atpmingw/make
+
+# Diretório de Destino do ATP personalizado: mytpbig.exe
+IMAGE  = $(MYDOCS)/mytpbig.exe
+
+#-------------------- Arquivos objetos do ATP ---------------------#
+
+OBJECTS = analyt.o \
+          comtac.o \
+          devt69.o \
+          dimdef.o \
+          fgnmod.o \
+          hopcod.o \
+          newmods.o \
+          user10.o \
+          usernl.o \
+          usrfun.o 
+
+
+#----------------- Arquivos objetos adicionados -------------------#
+
+MYOBJECTS = teste_foreign_model.o
+
+#------------------------ Arquivos do ATP -------------------------#
+          
+INSFILE = blkcom.ins \
+          comta1.ins \
+          comta2.ins \
+          comta3.ins \
+          deksal.ins \
+          dekspy.ins \
+          sixty4.ins \
+          space2.ins \
+          tacsar.ins
+
+#------------- Definições requeridas para compilação --------------#
+
+CFLAGS = -DUNDERSCORE -O2 -DPA_USE_ASIO=1
+FFLAGS = -O2
+
+#----------------------- Bibliotecas do ATP -----------------------#
+
+LIBRARY = $(ATPMINGW)/tpbig.a $(ATPMINGW)/dismg7.a -lgdi32 \
+	-L"C:/MinGW/lib"
+
+all: testaudio.o testaudio.exe #$(IMAGE)
+
+#testaudio: lib/$(PALIB) $(MAKEFILE) $(PAINC) testaudio.c
+#	$(LIBTOOL) --mode=link --tag=CXX $(CXX) -o $@ $(CXXFLAGS) testaudio.c lib/$(PALIB) $(LIBS)
+
+#testaudio.o: testaudio.cpp
+#	gcc -Wall -c $(CFLAGS) testaudio.cpp -I./include
+
+#testaudio: lib/$(PALIB) $(PAINC) testaudio.c
+#	g++ -o testaudio.exe -g -O2 -DPA_LITTLE_ENDIAN -I./include -I./src/common -I./src/os/win -DPA_USE_WMME=0 -DPA_USE_ASIO=0 -DPA_USE_WDMKS=0 -DPA_USE_DS=0 -DPA_USE_WASAPI=0 -ffast-math -fomit-frame-pointer -I./src/hostapi/asio -I./asiosdk_2.3.3/host/pc -I./asiosdk_2.3.3/common -I./asiosdk_2.3.3/host -UPA_USE_ASIO -DPA_USE_ASIO=1 -DWINDOWS -D_WIN32_WINNT=0x0501 -DWINVER=0x0501 testaudio.c  lib/.libs/libportaudio.a -lwinmm -lole32 -luuid
+
+#.f.o:
+#	$(FOR) -c $(FFLAGS) $<
+#.c.o:
+#	$(CC) -c $(CFLAGS) $<
+
+testaudio.o: 
+	gcc -c -g -O2 -DPA_LITTLE_ENDIAN -I./include -I./src/common -I./src/os/win -DPA_USE_WMME=0 -DPA_USE_ASIO=0 -DPA_USE_WDMKS=0 -DPA_USE_DS=0 \
+	-DPA_USE_WASAPI=0 -ffast-math -fomit-frame-pointer -I./src/hostapi/asio -I./asiosdk_2.3.3/host/pc -I./asiosdk_2.3.3/common \
+	-I./asiosdk_2.3.3/host -UPA_USE_ASIO -DPA_USE_ASIO=1 -DWINDOWS -D_WIN32_WINNT=0x0501 -DWINVER=0x0501 testaudio.c
+
+testaudio.exe:
+	gcc -o testaudio.exe testaudio.o lib/.libs/libportaudio.a -lwinmm -lole32 -luuid -lstdc++
+
+#$(IMAGE): $(OBJECTS) $(MYOBJECTS) $(INSFILE)
+#	gfortran -o $(IMAGE) $(OBJECTS) $(MYOBJECTS) $(LIBRARY)
+
+#teste_foreign_model.o: $(MYDOCS)\teste_foreign_model.cpp
+#	$(CC) -c $(CFLAGS) $(MYDOCS)\teste_foreign_model.cpp
+
+#teste_foreign_model.o: $(MYDOCS)\teste_foreign_model.c
+#	g++ -c -g -O2 -DPA_LITTLE_ENDIAN -I./include -I./src/common -I./src/os/win -DPA_USE_WMME=0 -DPA_USE_ASIO=0 -DPA_USE_WDMKS=0 -DPA_USE_DS=0 -DPA_USE_WASAPI=0 -ffast-math -fomit-frame-pointer -I./src/hostapi/asio -I./asiosdk_2.3.3/host/pc -I./asiosdk_2.3.3/common -I./asiosdk_2.3.3/host -UPA_USE_ASIO -DPA_USE_ASIO=1 -DWINDOWS -D_WIN32_WINNT=0x0501 -DWINVER=0x0501 $(MYDOCS)\teste_foreign_model.c  lib/.libs/libportaudio.a -lwinmm -lole32 -luuid

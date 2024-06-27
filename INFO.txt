@@ -1,0 +1,12 @@
+Canais de audio para minha placa mãe:
+# usando o adaptador do fone>
+# são 4 saidas de som, cada uma com 2 canais:
+	
+	saida 1: canal azul     0	saida de microfone frontal
+		 canal vermelho 1
+	saida 2: canal azul     2	saida de microfone traseira
+		 canal vermelho 3
+	saida 3: canal azul     4	saida line in azul traseira
+		 canal vermelho 5
+	saida 4: canal azul     6	saida de fone frontal
+		 canal vermelho 7
